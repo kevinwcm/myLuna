@@ -20,14 +20,34 @@ health-check)
     $LUNA_ROOT/shared/scripts/health-check.sh
     ;;
 
+secret-add)
+    $LUNA_ROOT/shared/scripts/secret-add.sh "$2" "$3"
+    ;;
+
+secret-list)
+    $LUNA_ROOT/shared/scripts/secret-list.sh "$2"
+    ;;
+
+secret-export)
+    $LUNA_ROOT/shared/scripts/secret-export.sh "$2"
+    ;;
+
 *)
     echo ""
     echo "myLuna Commands"
     echo ""
-    echo "myluna create-client NAME"
-    echo "myluna delete-client NAME"
-    echo "myluna list-clients"
-    echo "myluna health-check"
+    echo "Client:"
+    echo "  myluna create-client NAME"
+    echo "  myluna delete-client NAME"
+    echo "  myluna list-clients"
+    echo ""
+    echo "Vault:"
+    echo "  myluna secret-add CLIENT KEY"
+    echo "  myluna secret-list CLIENT"
+    echo "  myluna secret-export CLIENT"
+    echo ""
+    echo "System:"
+    echo "  myluna health-check"
     echo ""
     ;;
 esac
