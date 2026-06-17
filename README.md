@@ -2,73 +2,172 @@
 
 Kevin's AI Agent Deployment Platform
 
+---
+
 ## Overview
 
 myLuna is a lightweight deployment platform for managing multiple Hermes AI agents across different clients.
 
 The goal is to make agent deployment simple, repeatable, and scalable.
 
-## Phase 1 Goal
+---
 
-Deploy a fresh Ubuntu server and get a client agent running quickly.
+## Quick Start
 
-Example workflow:
+### 1. Clone Repository
 
 ```bash
-./install.sh
+git clone https://github.com/kevinwcm/myLuna.git
 
+cd myLuna
+```
+
+### 2. Run Installer
+
+```bash
+chmod +x install.sh
+
+./install.sh
+```
+
+### 3. Reconnect To Server
+
+Docker permissions require a new login session.
+
+```bash
+exit
+```
+
+Reconnect to the server.
+
+### 4. Verify Installation
+
+```bash
+myluna health-check
+```
+
+Expected:
+
+```text
+PASS: 4
+FAIL: 0
+```
+
+### 5. Create Your First Client
+
+```bash
 myluna create-client syspex
+```
+
+### 6. Verify Client
+
+```bash
+myluna list-clients
+```
+
+Expected:
+
+```text
+syspex
+```
+
+### 7. Configure Hermes
+
+```bash
+syspex setup
+```
+
+Configure:
+
+* Provider
+* Model
+* API Key
+
+### 8. Start Using Hermes
+
+```bash
+syspex chat
+```
+
+or
+
+```bash
+syspex gateway start
+```
+
+---
+
+## Commands
+
+```bash
+myluna create-client CLIENT_NAME
+
+myluna delete-client CLIENT_NAME
 
 myluna list-clients
 
 myluna health-check
 ```
 
-## Current Features
+---
 
-* Hermes profile management
-* Client creation
-* Client deletion
-* Client listing
-* Health checks
-* Standardized client structure
-
-## Future Roadmap
-
-### Phase 2
-
-* Vault
-* Secret management
-* Environment generation
-
-### Phase 3
-
-* Hybrid memory
-* Markdown knowledge base
-* SQLite indexing
-* Relationship memory
-
-### Phase 4
-
-* Review queue
-* Folder proposal approval
-* Memory proposal approval
-
-### Phase 5
-
-* Dashboard
-* Client monitoring
-* Backup monitoring
-
-## Project Structure
+## Client Structure
 
 ```text
-/opt/myLuna
+/opt/myLuna/clients/CLIENT_NAME
 
-├── clients
-├── shared
-├── runtime
-├── dashboard
-└── logs
+├── memory
+├── vault
+├── prompts
+├── knowledge
+├── backups
+├── logs
+└── metadata
 ```
 
+---
+
+## Tested Environment
+
+Successfully tested on:
+
+* Ubuntu 24.04 AWS EC2
+* Hermes Official Installer
+* Docker Backend
+* myLuna v0.1.0
+
+Development machine:
+
+* macOS
+* Windows
+
+Deployment target:
+
+* Ubuntu Server
+
+---
+
+## Roadmap
+
+### v0.2.0
+
+* Vault
+* Secret Management
+* Environment Generation
+
+### v0.3.0
+
+* Hybrid Memory
+* Markdown Knowledge Base
+* SQLite Index
+
+### v0.4.0
+
+* Review Queue
+* Structure Approval Workflow
+
+### v0.5.0
+
+* Dashboard
+* Client Monitoring
+* Backup Monitoring
