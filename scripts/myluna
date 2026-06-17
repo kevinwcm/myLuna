@@ -1,0 +1,33 @@
+#!/bin/bash
+
+LUNA_ROOT="/opt/myLuna"
+
+case "$1" in
+
+create-client)
+    $LUNA_ROOT/shared/scripts/create-client.sh "$2"
+    ;;
+
+delete-client)
+    $LUNA_ROOT/shared/scripts/delete-client.sh "$2"
+    ;;
+
+list-clients)
+    $LUNA_ROOT/shared/scripts/list-clients.sh
+    ;;
+
+health-check)
+    $LUNA_ROOT/shared/scripts/health-check.sh
+    ;;
+
+*)
+    echo ""
+    echo "myLuna Commands"
+    echo ""
+    echo "myluna create-client NAME"
+    echo "myluna delete-client NAME"
+    echo "myluna list-clients"
+    echo "myluna health-check"
+    echo ""
+    ;;
+esac
