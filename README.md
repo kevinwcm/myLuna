@@ -107,6 +107,10 @@ myluna delete-client CLIENT_NAME
 myluna list-clients
 
 myluna health-check
+
+myluna secret-add CLIENT KEY_NAME
+myluna secret-list CLIENT
+myluna secret-export CLIENT
 ```
 
 ---
