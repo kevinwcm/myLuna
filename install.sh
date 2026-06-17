@@ -3,18 +3,15 @@
 set -e
 
 LUNA_ROOT="/opt/myLuna"
+CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo "================================="
 echo "myLuna Phase 1 Installer"
 echo "================================="
 
-echo ""
-echo "Checking Ubuntu..."
-
 if [ "$(id -u)" -eq 0 ]; then
-    echo "Please run as normal user."
-    echo "Use:"
-    echo "./install.sh"
+    echo "Please run as normal user, not root."
+    echo "Use: ./install.sh"
     exit 1
 fi
 
@@ -22,7 +19,6 @@ echo ""
 echo "Installing dependencies..."
 
 sudo apt update
-
 sudo apt install -y \
 curl \
 git \
@@ -34,30 +30,37 @@ docker.io
 echo ""
 echo "Creating myLuna structure..."
 
-sudo mkdir -p $LUNA_ROOT
+sudo mkdir -p "$LUNA_ROOT"/clients
+sudo mkdir -p "$LUNA_ROOT"/shared/scripts
+sudo mkdir -p "$LUNA_ROOT"/shared/templates
+sudo mkdir -p "$LUNA_ROOT"/shared/docs
+sudo mkdir -p "$LUNA_ROOT"/shared/backups
+sudo mkdir -p "$LUNA_ROOT"/runtime/hermes
+sudo mkdir -p "$LUNA_ROOT"/dashboard
+sudo mkdir -p "$LUNA_ROOT"/logs
 
-sudo mkdir -p $LUNA_ROOT/clients
+sudo chown -R "$USER:$USER" "$LUNA_ROOT"
 
-sudo mkdir -p $LUNA_ROOT/shared/scripts
-sudo mkdir -p $LUNA_ROOT/shared/templates
-sudo mkdir -p $LUNA_ROOT/shared/docs
-sudo mkdir -p $LUNA_ROOT/shared/backups
+echo ""
+echo "Copying myLuna files..."
 
-sudo mkdir -p $LUNA_ROOT/runtime/hermes
+cp -r "$CURRENT_DIR/scripts/"* "$LUNA_ROOT/shared/scripts/" 2>/dev/null || true
+cp -r "$CURRENT_DIR/templates/"* "$LUNA_ROOT/shared/templates/" 2>/dev/null || true
+cp -r "$CURRENT_DIR/docs/"* "$LUNA_ROOT/shared/docs/" 2>/dev/null || true
 
-sudo mkdir -p $LUNA_ROOT/dashboard
+chmod +x "$LUNA_ROOT/shared/scripts/"* 2>/dev/null || true
 
-sudo mkdir -p $LUNA_ROOT/logs
+echo ""
+echo "Installing myluna command..."
 
-sudo chown -R $USER:$USER $LUNA_ROOT
+sudo ln -sf "$LUNA_ROOT/shared/scripts/myluna" /usr/local/bin/myluna
 
 echo ""
 echo "Checking Docker..."
 
 sudo systemctl enable docker
 sudo systemctl start docker
-
-sudo usermod -aG docker $USER
+sudo usermod -aG docker "$USER"
 
 echo ""
 echo "Checking Hermes..."
@@ -67,13 +70,11 @@ then
     echo "Hermes already installed."
 else
     echo "Installing Hermes..."
-
     curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
 fi
 
 echo ""
 echo "Installation Complete"
-
 echo ""
 echo "Next Steps:"
 echo "1. Log out and log back in"
