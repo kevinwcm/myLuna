@@ -25,6 +25,7 @@ git \
 sqlite3 \
 python3 \
 python3-pip \
+python3-venv \
 docker.io
 
 echo ""
@@ -79,3 +80,7 @@ echo ""
 echo "Next Steps:"
 echo "1. Log out and log back in"
 echo "2. Run: myluna health-check"
+echo ""
+echo "Installing Python vault dependency..."
+
+python3 -m pip install --user cryptography || true
