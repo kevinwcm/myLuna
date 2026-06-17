@@ -10,19 +10,4 @@ if [ -z "$CLIENT" ]; then
     exit 1
 fi
 
-VAULT_FILE="/opt/myLuna/clients/$CLIENT/vault/secrets.env"
-
-if [ ! -f "$VAULT_FILE" ]; then
-    echo "No secrets found for client: $CLIENT"
-    exit 0
-fi
-
-echo ""
-echo "Secrets for client: $CLIENT"
-echo "=========================="
-echo ""
-
-cut -d '=' -f 1 "$VAULT_FILE"
-
-echo ""
-echo "Values are hidden."
+python3 /opt/myLuna/shared/scripts/vault/vault_tool.py list "$CLIENT"
