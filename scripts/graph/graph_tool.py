@@ -178,6 +178,57 @@ def explore(client, entity):
 
     print("")
 
+def trace(client, entity, max_depth=3):
+    root, graph, csv_file, db_file = paths(client)
+    init_graph(client)
+
+    conn = sqlite3.connect(db_file)
+    cur = conn.cursor()
+
+    cur.execute("""
+        SELECT source, type, target
+        FROM relationships
+    """)
+
+    rows = cur.fetchall()
+    conn.close()
+
+    graph_map = {}
+
+    for source, rel_type, target in rows:
+        graph_map.setdefault(source, []).append((rel_type, target))
+
+    print("")
+    print(f"Trace from: {entity}")
+    print("====================")
+    print("")
+
+    visited = set()
+
+    def walk(node, depth):
+        if depth > max_depth:
+            return
+
+        if node in visited:
+            print("    " * depth + f"↳ {node} (already visited)")
+            return
+
+        visited.add(node)
+
+        if depth == 0:
+            print(node)
+
+        children = graph_map.get(node, [])
+
+        for rel_type, target in children:
+            indent = "    " * depth
+            print(f"{indent}└── {rel_type} → {target}")
+            walk(target, depth + 1)
+
+    walk(entity, 0)
+
+    print("")    
+
 
 def main():
     if len(sys.argv) < 3:
@@ -186,6 +237,7 @@ def main():
         print("  graph_tool.py list CLIENT")
         print("  graph_tool.py search CLIENT ENTITY")
         print("  graph_tool.py explore CLIENT ENTITY")
+        print("  graph_tool.py trace CLIENT ENTITY")
         sys.exit(1)
 
     command = sys.argv[1]
@@ -211,6 +263,12 @@ def main():
             print("Usage: graph_tool.py explore CLIENT ENTITY")
             sys.exit(1)
         explore(client, sys.argv[3])
+        
+    elif command == "trace":
+        if len(sys.argv) < 4:
+            print("Usage: graph_tool.py trace CLIENT ENTITY")
+            sys.exit(1)
+        trace(client, sys.argv[3])    
 
     else:
         print(f"Unknown command: {command}")
