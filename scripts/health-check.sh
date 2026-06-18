@@ -140,6 +140,24 @@ if [ -d "$CLIENTS_ROOT" ] && [ -n "$(ls -A "$CLIENTS_ROOT" 2>/dev/null)" ]; then
             warn "$CLIENT graph.db missing"
         fi
 
+        if [ -f "$CLIENT_PATH/memory/vectors/index.pkl" ]; then
+            pass "$CLIENT vector index exists"
+        else
+            warn "$CLIENT vector index missing"
+        fi
+
+        if [ -f "$CLIENT_PATH/memory/vectors/metadata.json" ]; then
+            pass "$CLIENT vector metadata exists"
+        else
+            warn "$CLIENT vector metadata missing"
+        fi
+
+        if [ -f "$CLIENT_PATH/memory/vectors/model.txt" ]; then
+            pass "$CLIENT vector model exists"
+        else
+            warn "$CLIENT vector model missing"
+        fi
+
         if [ -d "$CLIENT_PATH/backups" ]; then
             pass "$CLIENT local backup folder exists"
         else
