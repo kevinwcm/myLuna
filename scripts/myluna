@@ -64,6 +64,10 @@ graph-search)
     $LUNA_ROOT/shared/scripts/graph-search.sh "$2" "$3"
     ;;
 
+graph-explore)
+    $LUNA_ROOT/shared/scripts/graph-explore.sh "$2" "$3"
+    ;;
+
 *)
     echo ""
     echo "myLuna Commands"
@@ -100,6 +104,7 @@ graph-search)
     echo "  myluna graph-add CLIENT SOURCE TYPE TARGET"
     echo "  myluna graph-list CLIENT"
     echo "  myluna graph-search CLIENT ENTITY"
+    echo "  myluna graph-explore CLIENT ENTITY"
     echo ""
 
     ;;
