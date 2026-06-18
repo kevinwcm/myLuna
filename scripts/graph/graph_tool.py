@@ -124,6 +124,60 @@ def search(client, entity):
 
     print("")
 
+def explore(client, entity):
+    root, graph, csv_file, db_file = paths(client)
+    init_graph(client)
+
+    conn = sqlite3.connect(db_file)
+    cur = conn.cursor()
+
+    cur.execute("""
+        SELECT source, type, target
+        FROM relationships
+        WHERE target = ?
+        ORDER BY created_at DESC
+    """, (entity,))
+
+    incoming = cur.fetchall()
+
+    cur.execute("""
+        SELECT source, type, target
+        FROM relationships
+        WHERE source = ?
+        ORDER BY created_at DESC
+    """, (entity,))
+
+    outgoing = cur.fetchall()
+
+    conn.close()
+
+    print("")
+    print(f"Entity: {entity}")
+    print("")
+
+    print("Incoming Relationships")
+    print("----------------------")
+    print("")
+
+    if not incoming:
+        print("None")
+    else:
+        for source, rel_type, target in incoming:
+            print(f"- {source} {rel_type} {target}")
+
+    print("")
+    print("Outgoing Relationships")
+    print("----------------------")
+    print("")
+
+    if not outgoing:
+        print("None")
+    else:
+        for source, rel_type, target in outgoing:
+            print(f"- {source} {rel_type} {target}")
+
+    print("")
+
 
 def main():
     if len(sys.argv) < 3:
@@ -131,6 +185,7 @@ def main():
         print("  graph_tool.py add CLIENT SOURCE TYPE TARGET")
         print("  graph_tool.py list CLIENT")
         print("  graph_tool.py search CLIENT ENTITY")
+        print("  graph_tool.py explore CLIENT ENTITY")
         sys.exit(1)
 
     command = sys.argv[1]
@@ -151,9 +206,17 @@ def main():
             sys.exit(1)
         search(client, sys.argv[3])
 
+    elif command == "explore":
+        if len(sys.argv) < 4:
+            print("Usage: graph_tool.py explore CLIENT ENTITY")
+            sys.exit(1)
+        explore(client, sys.argv[3])
+
     else:
         print(f"Unknown command: {command}")
         sys.exit(1)
+    
+    
 
 
 if __name__ == "__main__":
