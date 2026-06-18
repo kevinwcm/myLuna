@@ -36,28 +36,37 @@ backup)
     $LUNA_ROOT/shared/scripts/backup-client.sh "$2"
     ;;
 
+restore)
+    $LUNA_ROOT/shared/scripts/restore-client.sh "$2" "$3"
+    ;;
+
 
 
 *)
     echo ""
     echo "myLuna Commands"
     echo ""
+
     echo "Client:"
-    echo ""
-    echo "Backup:"
-    echo ""
-    echo "  myluna backup CLIENT"
     echo "  myluna create-client NAME"
     echo "  myluna delete-client NAME"
     echo "  myluna list-clients"
     echo ""
+
     echo "Vault:"
     echo "  myluna secret-add CLIENT KEY"
     echo "  myluna secret-list CLIENT"
     echo "  myluna secret-export CLIENT"
     echo ""
+
+    echo "Backup:"
+    echo "  myluna backup CLIENT"
+    echo "  myluna restore CLIENT BACKUP_FILE"
+    echo ""
+
     echo "System:"
     echo "  myluna health-check"
-   
+    echo ""
+
     ;;
 esac
