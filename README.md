@@ -165,6 +165,8 @@ myluna graph-search CLIENT ENTITY
 
 myluna graph-explore CLIENT ENTITY
 
+myluna graph-trace CLIENT ENTITY
+
 
 # Vector
 
@@ -229,6 +231,33 @@ This can return both memory documents and related graph relationships.
 
 ---
 
+## Multi-Hop Graph Trace
+
+Trace relationships outward from an entity:
+
+```bash
+myluna graph-trace CLIENT ENTITY
+```
+
+Example:
+
+```bash
+myluna graph-trace syspex Kevin
+```
+
+Example output:
+
+```text
+Kevin
+└── works_for → Syspex
+    └── sells → ProxiAlert
+```
+
+This can show indirect relationships across the knowledge graph.
+
+---
+
+
 ## Client Structure
 
 ```text
@@ -252,7 +281,7 @@ Successfully tested on:
 * Ubuntu 24.04 AWS EC2
 * Hermes Official Installer
 * Docker Backend
-* myLuna v0.4.6-alpha
+* myLuna v0.4.7-alpha
 
 Development machine:
 
