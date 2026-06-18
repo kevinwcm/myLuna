@@ -48,6 +48,7 @@ echo "Copying myLuna files..."
 cp -r "$CURRENT_DIR/scripts/"* "$LUNA_ROOT/shared/scripts/" 2>/dev/null || true
 cp -r "$CURRENT_DIR/templates/"* "$LUNA_ROOT/shared/templates/" 2>/dev/null || true
 cp -r "$CURRENT_DIR/docs/"* "$LUNA_ROOT/shared/docs/" 2>/dev/null || true
+cp -r "$CURRENT_DIR/dashboard/"* "$LUNA_ROOT/dashboard/" 2>/dev/null || true
 
 chmod +x "$LUNA_ROOT/shared/scripts/"* 2>/dev/null || true
 
