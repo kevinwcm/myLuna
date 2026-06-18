@@ -84,3 +84,8 @@ echo ""
 echo "Installing Python vault dependency..."
 
 python3 -m pip install --user cryptography --break-system-packages || true
+
+echo ""
+echo "Installing Python vector dependencies..."
+
+python3 -m pip install --user sentence-transformers numpy --break-system-packages || true
