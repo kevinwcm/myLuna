@@ -85,17 +85,17 @@ if [ -d "$CLIENTS_ROOT" ] && [ -n "$(ls -A "$CLIENTS_ROOT" 2>/dev/null)" ]; then
         CLIENT=$(basename "$CLIENT_PATH")
 
         if [[ "$CLIENT" == *_before_restore_* ]]; then
-        warn "Ignoring restore safety folder: $CLIENT"
-        continue
+            warn "Ignoring restore safety folder: $CLIENT"
+            continue
         fi
 
         echo ""
         echo "Client: $CLIENT"
 
         if command -v "$CLIENT" >/dev/null 2>&1; then
-            pass "Hermes wrapper exists for $CLIENT"
+        pass "Hermes wrapper exists for $CLIENT"
         else
-            warn "Hermes wrapper missing for $CLIENT"
+        warn "Hermes wrapper missing for $CLIENT"
         fi
 
         if [ -f "$CLIENT_PATH/metadata/client.yaml" ]; then
