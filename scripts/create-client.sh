@@ -28,6 +28,13 @@ mkdir -p "$CLIENT_ROOT/memory/formats"
 mkdir -p "$CLIENT_ROOT/memory/projects"
 mkdir -p "$CLIENT_ROOT/memory/knowledge"
 mkdir -p "$CLIENT_ROOT/memory/graph"
+
+GRAPH_DIR="$CLIENT_ROOT/memory/graph"
+
+if [ ! -f "$GRAPH_DIR/relationships.csv" ]; then
+    echo "source,type,target" > "$GRAPH_DIR/relationships.csv"
+fi
+
 mkdir -p "$CLIENT_ROOT/memory/archive"
 mkdir -p "$CLIENT_ROOT/memory/db"
 
