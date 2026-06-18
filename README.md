@@ -161,6 +161,8 @@ myluna graph-list CLIENT
 
 myluna graph-search CLIENT ENTITY
 
+myluna graph-explore CLIENT ENTITY
+
 ```
 ---
 
