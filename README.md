@@ -152,6 +152,7 @@ myluna memory-search CLIENT QUERY
 
 myluna health-check
 
+
 # Graph
 
 myluna graph-add CLIENT SOURCE TYPE TARGET
@@ -161,6 +162,22 @@ myluna graph-list CLIENT
 myluna graph-search CLIENT ENTITY
 
 ```
+---
+
+## Memory + Graph Search
+
+`myluna memory-search` searches both:
+
+- Markdown memory index
+- Relationship graph
+
+Example:
+
+```bash
+myluna memory-search syspex ProxiAlert
+```
+
+This can return both memory documents and related graph relationships.
 
 ---
 
