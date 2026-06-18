@@ -28,6 +28,7 @@ mkdir -p "$CLIENT_ROOT/memory/formats"
 mkdir -p "$CLIENT_ROOT/memory/projects"
 mkdir -p "$CLIENT_ROOT/memory/knowledge"
 mkdir -p "$CLIENT_ROOT/memory/graph"
+mkdir -p "$CLIENT_ROOT/memory/vectors"
 
 GRAPH_DIR="$CLIENT_ROOT/memory/graph"
 
