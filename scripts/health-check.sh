@@ -79,15 +79,15 @@ if [ -d "$CLIENTS_ROOT" ] && [ -n "$(ls -A "$CLIENTS_ROOT" 2>/dev/null)" ]; then
     echo "-------------"
 
     for CLIENT_PATH in "$CLIENTS_ROOT"/*; do
-        
-        if [[ "$CLIENT" == *_before_restore_* ]]; then
-        warn "Ignoring restore safety folder: $CLIENT"
-        continue
-        fi
 
         [ -d "$CLIENT_PATH" ] || continue
 
         CLIENT=$(basename "$CLIENT_PATH")
+
+        if [[ "$CLIENT" == *_before_restore_* ]]; then
+        warn "Ignoring restore safety folder: $CLIENT"
+        continue
+        fi
 
         echo ""
         echo "Client: $CLIENT"
