@@ -20,6 +20,8 @@ The goal is to make agent deployment simple, repeatable, and scalable.
 * Secret Export for Hermes
 * Backup & Restore
 * Hybrid Memory (Markdown + SQLite)
+* Relationship Graph
+* Local Vector Search
 * Health Checks
 * Standardized Client Structure
 * AWS Tested Deployment
@@ -163,7 +165,51 @@ myluna graph-search CLIENT ENTITY
 
 myluna graph-explore CLIENT ENTITY
 
+
+# Vector
+
+myluna vector-index CLIENT
+
+myluna semantic-search CLIENT QUERY
+
 ```
+
+---
+
+## Vector Search
+
+Build vector index:
+
+```bash
+myluna vector-index CLIENT
+```
+
+Search semantically:
+
+```bash
+myluna semantic-search CLIENT QUERY
+```
+
+Example:
+
+```bash
+myluna semantic-search syspex forklift collision prevention
+```
+
+Returns semantically related knowledge even when exact keywords do not exist.
+
+Index knowledge after adding or updating markdown files:
+
+```bash
+myluna vector-index CLIENT
+```
+
+Then search:
+
+```bash
+myluna semantic-search CLIENT QUERY
+```
+
 ---
 
 ## Memory + Graph Search
@@ -206,7 +252,7 @@ Successfully tested on:
 * Ubuntu 24.04 AWS EC2
 * Hermes Official Installer
 * Docker Backend
-* myLuna v0.4.0-alpha
+* myLuna v0.4.6-alpha
 
 Development machine:
 
