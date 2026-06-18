@@ -92,19 +92,48 @@ def search_memory(client, query):
     rows = cur.fetchall()
     conn.close()
 
-    if not rows:
-        print(f"No memory found for: {query}")
-        return
-
     print("")
     print(f"Memory search results for: {query}")
     print("====================================")
     print("")
 
-    for path, title in rows:
-        print(f"- {title} ({path})")
+    if not rows:
+        print(f"No memory found for: {query}")
+    else:
+        for path, title in rows:
+            print(f"- {title} ({path})")
 
-    print("")
+    graph_db = memory / "graph" / "graph.db"
+
+    if graph_db.exists():
+        conn = sqlite3.connect(graph_db)
+        cur = conn.cursor()
+
+        cur.execute("""
+            SELECT source, type, target
+            FROM relationships
+            WHERE source LIKE ? OR type LIKE ? OR target LIKE ?
+            ORDER BY created_at DESC
+            LIMIT 20
+        """, (pattern, pattern, pattern))
+
+        graph_rows = cur.fetchall()
+        conn.close()
+
+        print("")
+        print(f"Related graph relationships for: {query}")
+        print("========================================")
+        print("")
+
+        if not graph_rows:
+            print(f"No graph relationships found for: {query}")
+        else:
+            for source, rel_type, target in graph_rows:
+                print(f"- {source} {rel_type} {target}")
+    else:
+        print("")
+        print("Graph index not found.")
+        print("Run graph-add first to create graph relationships.")
 
 
 def main():
