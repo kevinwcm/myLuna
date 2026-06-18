@@ -7,7 +7,7 @@ from fastapi import Request
 
 app = FastAPI(title="myLuna Dashboard")
 
-templates = Jinja2Templates(directory="dashboard/templates")
+templates = Jinja2Templates(directory="/opt/myLuna/dashboard/templates")
 
 CLIENTS_ROOT = Path("/opt/myLuna/clients")
 
