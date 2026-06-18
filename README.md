@@ -12,6 +12,20 @@ The goal is to make agent deployment simple, repeatable, and scalable.
 
 ---
 
+## Current Features
+
+* Multi-Client Hermes Deployment
+* Client Lifecycle Management
+* Encrypted Vault Storage
+* Secret Export for Hermes
+* Backup & Restore
+* Hybrid Memory (Markdown + SQLite)
+* Health Checks
+* Standardized Client Structure
+* AWS Tested Deployment
+
+---
+
 ## Quick Start
 
 ### 1. Clone Repository
@@ -100,17 +114,43 @@ syspex gateway start
 ## Commands
 
 ```bash
+# Client
+
 myluna create-client CLIENT_NAME
 
 myluna delete-client CLIENT_NAME
 
 myluna list-clients
 
-myluna health-check
+
+# Vault
 
 myluna secret-add CLIENT KEY_NAME
+
 myluna secret-list CLIENT
+
 myluna secret-export CLIENT
+
+
+# Backup
+
+myluna backup CLIENT
+
+myluna restore CLIENT BACKUP_FILE
+
+
+# Memory
+
+myluna memory-init CLIENT
+
+myluna memory-index CLIENT
+
+myluna memory-search CLIENT QUERY
+
+
+# System
+
+myluna health-check
 ```
 
 ---
@@ -138,7 +178,7 @@ Successfully tested on:
 * Ubuntu 24.04 AWS EC2
 * Hermes Official Installer
 * Docker Backend
-* myLuna v0.1.0
+* myLuna v0.4.0-alpha
 
 Development machine:
 
@@ -172,6 +212,20 @@ Deployment target:
 
 ### v0.5.0
 
+* Relationship Graph
+* Memory Relationships
+
+### v0.6.0
+
+* Review Queue
+* Structure Approval Workflow
+
+### v0.7.0
+
 * Dashboard
 * Client Monitoring
 * Backup Monitoring
+
+### v1.0.0
+
+* Production Ready Release
