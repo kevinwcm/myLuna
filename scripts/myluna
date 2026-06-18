@@ -80,6 +80,10 @@ semantic-search)
     $LUNA_ROOT/shared/scripts/semantic-search.sh "$2" "${@:3}"
     ;;
 
+dashboard-start)
+    $LUNA_ROOT/shared/scripts/dashboard-start.sh
+    ;;
+
 *)
     echo ""
     echo "myLuna Commands"
@@ -123,6 +127,10 @@ semantic-search)
     echo "Vector:"
     echo "  myluna vector-index CLIENT"
     echo "  myluna semantic-search CLIENT QUERY"
+    echo ""
+
+    echo "Dashboard:"
+    echo "  myluna dashboard-start"
     echo ""
 
     ;;
