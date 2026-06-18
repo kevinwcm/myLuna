@@ -32,11 +32,21 @@ secret-export)
     $LUNA_ROOT/shared/scripts/secret-export.sh "$2"
     ;;
 
+backup)
+    $LUNA_ROOT/shared/scripts/backup-client.sh "$2"
+    ;;
+
+
+
 *)
     echo ""
     echo "myLuna Commands"
     echo ""
     echo "Client:"
+    echo ""
+    echo "Backup:"
+    echo ""
+    echo "  myluna backup CLIENT"
     echo "  myluna create-client NAME"
     echo "  myluna delete-client NAME"
     echo "  myluna list-clients"
@@ -48,6 +58,6 @@ secret-export)
     echo ""
     echo "System:"
     echo "  myluna health-check"
-    echo ""
+   
     ;;
 esac
