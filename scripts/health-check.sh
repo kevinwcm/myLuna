@@ -128,6 +128,18 @@ if [ -d "$CLIENTS_ROOT" ] && [ -n "$(ls -A "$CLIENTS_ROOT" 2>/dev/null)" ]; then
             warn "$CLIENT memory index missing"
         fi
 
+        if [ -f "$CLIENT_PATH/memory/graph/relationships.csv" ]; then
+            pass "$CLIENT relationships.csv exists"
+        else
+            warn "$CLIENT relationships.csv missing"
+        fi
+
+        if [ -f "$CLIENT_PATH/memory/graph/graph.db" ]; then
+            pass "$CLIENT graph.db exists"
+        else
+            warn "$CLIENT graph.db missing"
+        fi
+
         if [ -d "$CLIENT_PATH/backups" ]; then
             pass "$CLIENT local backup folder exists"
         else
