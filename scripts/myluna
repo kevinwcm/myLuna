@@ -40,6 +40,17 @@ restore)
     $LUNA_ROOT/shared/scripts/restore-client.sh "$2" "$3"
     ;;
 
+memory-init)
+    $LUNA_ROOT/shared/scripts/memory-init.sh "$2"
+    ;;
+
+memory-index)
+    $LUNA_ROOT/shared/scripts/memory-index.sh "$2"
+    ;;
+
+memory-search)
+    $LUNA_ROOT/shared/scripts/memory-search.sh "$2" "$3"
+    ;;
 
 
 *)
@@ -68,5 +79,11 @@ restore)
     echo "  myluna health-check"
     echo ""
 
+    echo "Memory:"
+    echo "  myluna memory-init CLIENT"
+    echo "  myluna memory-index CLIENT"
+    echo "  myluna memory-search CLIENT QUERY"
+    echo ""
+    
     ;;
 esac
