@@ -83,4 +83,4 @@ echo "2. Run: myluna health-check"
 echo ""
 echo "Installing Python vault dependency..."
 
-python3 -m pip install --user cryptography || true
+python3 -m pip install --user cryptography --break-system-packages || true
