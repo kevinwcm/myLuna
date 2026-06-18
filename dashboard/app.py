@@ -23,14 +23,14 @@ async def home(request: Request):
         )
 
     return templates.TemplateResponse(
-        "index.html",
-        {
-            "request": request,
+        request=request,
+        name="index.html",
+        context={
             "client_count": client_count,
         },
-    )
+    )    
 
-
+    
 @app.get("/clients", response_class=HTMLResponse)
 async def clients(request: Request):
 
@@ -46,9 +46,9 @@ async def clients(request: Request):
         )
 
     return templates.TemplateResponse(
-        "clients.html",
-        {
-            "request": request,
+        request=request,
+        name="clients.html",
+        context={
             "clients": clients,
         },
     )
