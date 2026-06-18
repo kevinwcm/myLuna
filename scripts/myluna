@@ -68,6 +68,14 @@ graph-explore)
     $LUNA_ROOT/shared/scripts/graph-explore.sh "$2" "$3"
     ;;
 
+vector-index)
+    $LUNA_ROOT/shared/scripts/vector-index.sh "$2"
+    ;;
+
+semantic-search)
+    $LUNA_ROOT/shared/scripts/semantic-search.sh "$2" "${@:3}"
+    ;;
+
 *)
     echo ""
     echo "myLuna Commands"
@@ -105,6 +113,11 @@ graph-explore)
     echo "  myluna graph-list CLIENT"
     echo "  myluna graph-search CLIENT ENTITY"
     echo "  myluna graph-explore CLIENT ENTITY"
+    echo ""
+
+    echo "Vector:"
+    echo "  myluna vector-index CLIENT"
+    echo "  myluna semantic-search CLIENT QUERY"
     echo ""
 
     ;;
