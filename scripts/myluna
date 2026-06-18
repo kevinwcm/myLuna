@@ -52,6 +52,17 @@ memory-search)
     $LUNA_ROOT/shared/scripts/memory-search.sh "$2" "$3"
     ;;
 
+graph-add)
+    $LUNA_ROOT/shared/scripts/graph-add.sh "$2" "$3" "$4" "$5"
+    ;;
+
+graph-list)
+    $LUNA_ROOT/shared/scripts/graph-list.sh "$2"
+    ;;
+
+graph-search)
+    $LUNA_ROOT/shared/scripts/graph-search.sh "$2" "$3"
+    ;;
 
 *)
     echo ""
@@ -84,6 +95,12 @@ memory-search)
     echo "  myluna memory-index CLIENT"
     echo "  myluna memory-search CLIENT QUERY"
     echo ""
-    
+
+    echo "Graph:"
+    echo "  myluna graph-add CLIENT SOURCE TYPE TARGET"
+    echo "  myluna graph-list CLIENT"
+    echo "  myluna graph-search CLIENT ENTITY"
+    echo ""
+
     ;;
 esac
