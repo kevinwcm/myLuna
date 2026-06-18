@@ -151,6 +151,15 @@ myluna memory-search CLIENT QUERY
 # System
 
 myluna health-check
+
+# Graph
+
+myluna graph-add CLIENT SOURCE TYPE TARGET
+
+myluna graph-list CLIENT
+
+myluna graph-search CLIENT ENTITY
+
 ```
 
 ---
