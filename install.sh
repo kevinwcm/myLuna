@@ -89,3 +89,8 @@ echo ""
 echo "Installing Python vector dependencies..."
 
 python3 -m pip install --user sentence-transformers numpy --break-system-packages || true
+
+echo ""
+echo "Installing Python dashboard dependencies..."
+
+python3 -m pip install --user fastapi uvicorn jinja2 --break-system-packages || true
