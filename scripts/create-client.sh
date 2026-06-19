@@ -66,6 +66,13 @@ $CLIENT
 EOF
 
 echo ""
+echo "Installing myLuna Hermes skills..."
+
+mkdir -p "$HOME/.hermes/profiles/$CLIENT/skills"
+
+cp -r /opt/myLuna/shared/hermes-skills/* "$HOME/.hermes/profiles/$CLIENT/skills/" 2>/dev/null || true
+
+echo ""
 echo "Client created successfully:"
 echo "$CLIENT"
 echo ""
