@@ -1,50 +1,48 @@
-# myLuna Project Status
+## v0.5.0-alpha — Hermes Memory Integration
 
-Current Release:
-v0.4.8-alpha
+### Status
 
-Status:
-Dashboard Foundation released.
+Completed
 
-Completed:
+### Objective
 
-* Multi-client deployment
-* Vault
-* Backup & Restore
-* Hybrid Memory
-* SQLite indexing
-* Relationship Graph
-* Graph-Aware Search
-* Relationship Explorer
-* Local Vector Search
-* Multi-Hop Relationship Discovery
-* Dashboard Foundation
+Allow Hermes agents to automatically use myLuna memory without requiring manual CLI searches.
 
-Current Philosophy:
-Operational first.
-UI/UX and dashboard enhancements are lower priority.
+### Features
 
-Next Release:
-v0.5.0-alpha
+* Added Hermes `myluna-memory` skill
+* Automatic Hermes skill installation during myLuna install
+* Automatic skill deployment during client creation
+* Hermes integration with `myluna memory-search`
 
-Title:
-Hermes Memory Integration
+### Validation
 
-Goal:
-Connect Hermes directly to:
+Successfully tested on a fresh AWS EC2 deployment.
 
-* memory-search
-* semantic-search
-* graph-search
-* graph-trace
-* vault exports
+Validated:
 
-Success Criteria:
-A Hermes client can answer questions using myLuna memory and knowledge without requiring manual CLI searches.
+* Fresh install from Git
+* Hermes profile creation
+* Automatic skill installation
+* Automatic memory retrieval
+* Client isolation
+* Hermes memory-assisted responses
 
-Deferred:
+### Example
 
-* Dashboard enhancements
-* Graph visualization
-* Review queue
-* UI polish
+User:
+
+"What happened during the Open House?"
+
+Hermes:
+
+* Discovered `myluna-memory` skill
+* Executed `myluna memory-search`
+* Retrieved memory from myLuna
+* Generated answer using stored knowledge
+
+### Outcome
+
+Hermes can now use organizational memory stored in myLuna automatically.
+
+This validates the Hermes ↔ myLuna integration architecture and establishes the foundation for future semantic, graph, and vault integrations.
